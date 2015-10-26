@@ -5,8 +5,16 @@
     <title>Tudo Sobre Google Glass</title>
     <link rel="stylesheet" href="_css/estilo.css"/>
     <link rel="stylesheet" href="_css/form.css"/>
+    <script language="javascript" src="_javascript/funcoes.js"></script>
+    <script>
+        function calc_total() {
+            var qtd = parseInt(document.getElementById('cQuan').value);
+            Pc = qtd * 1500;
+            document.getElementById('cPc').value = Pc;
+        }
+
+    </script>
 </head>
-<script language="javascript" src="_javascript/funcoes.js"></script>
 <body>
 
 <div id="interface">
@@ -31,7 +39,7 @@
         </nav>
     </header>
 
-    <article id="corpo-full">
+    <section id="corpo-full">
         <article id="noticia-principal">
             <header id="cabecalho-artigo">
                 <hgroup>
@@ -44,7 +52,7 @@
                 </hgroup>
             </header>
 
-<form>
+<form method="post" id="fContato" action="mailto:miqueiasscopel@gmail.com" oninput="calc_total();">
     <fieldset id="usuario">
 
         <legend>Identificação do Usuário</legend>
@@ -60,25 +68,50 @@
 <fieldset id="endereco">
 <legend>Endereço do Usuário</legend>
               <p><label for="cRua"> Logradouro:</label><input type="text" name="tRua" id="cRua" size="8" maxlength="40" placeholder="Rua, Av, Trav, ..."/></p>
-               <p><label for="cNum">Número:</label><input type="number" name="tNum" id="cNum" min="0" max="999"></p>
-               Estado:
-               Cidade:
-</fieldset>
+               <p><label for="cNum">Número:</label><input type="number" name="tNum" id="cNum" min="0" max="99999"></p>
+              <p><label for="cEst"></label>Estado:
+              <select name="tEst" id="cEst">
+                  <optgroup label="Regiao Sudeste"><option value="RJ">Rio de Janeiro</option>
+                  <option value="SP">São Paulo</option>
+                  <option value="ES">Espirito Santo</option>
+                  </optgroup>
+                  <optgroup label="Regiao Sul"><option value="PR">Paraná</option>
+                  <option value="RG">Rio Grande do Sul</option></optgroup>
+              </select> </p>
+
+               <p><label for="cCid">Cidade:</label>
+               <input type="text" id="tCid" id="cCid" maxlength="40" size="20" placeholder="Sua Cidade" list="cidades"></p>
+               <datalist id="cidades">
+                   <option value="Rio de Janeiro"></option>
+                   <option value="Nova Iguaçu"></option>
+                   <option value="Lapa"></option>
+
+               </datalist>
+               </fieldset>
 
 <fieldset id="mensagem"><legend>Mensagem do Usuário</legend>
-    Grau de Urgência:
-    Mensagem:
+    <p><label for="cUrg">Grau de Urgência:</label>
+    Min<input type="range" name="tUrg" id="cUrg" min="0" max="10" step="2">Max</p>
+    <p><label for="cMen">Mensagem:</label>
+    <textarea name="tMen" id="cMen" cols="45" rows="5" placeholder="Deixe aqui sua mensagem"></textarea></p>
 </fieldset>
 
 <fieldset id="pedido"><legend>Quero um Google Glass</legend>
-              Gostaria de adquirir um Google Glass quando disponível
-              Cor:
-              Quantidade:
-              Preço Total: R$
+
+    <p><input type="checkbox" name="tPed" id="cPed" checked>
+              <label for="cPed">Gostaria de adquirir um Google Glass quando disponível</label></p>
+
+    <p><input type="color" name="tCor" id="cCor" value="#ffffff"/>
+                  <label for="cCor">Cor:</label></p>
+              <p><label for="cQuan">Quantidade:</label>
+              <input type="number" name="tQuan" id="cQuan" min="0" max="5" value="0"/></p>
+              <p><label for="cPc">Preço Total: R$</label>
+              <input type="text" name="tPc" id="cPc" placeholder="Total a pagar"></p>
 </fieldset>
 
 
-[BOTÃO ENVIAR]
+    <fieldset><input type="image" name="tEnviar" id="cEnviar" src="_imagens/botao-enviar.png"/>
+    </fieldset>
 </form>
 
 
